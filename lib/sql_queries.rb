@@ -25,13 +25,12 @@ end
 def selects_the_titles_and_amount_over_goal_of_all_projects_that_have_met_their_funding_goal
   #difference = project.title
 
-"difference = SUM(pledges.amount) - projects.funding_goal
-
+"
 SELECT projects.title, difference
 FROM projects
 JOIN pledges
 ON projects.id = pledges.project_id
-GROUP by projects.title HAVING projects.funding_goal - SUM(pledges.amount) > -1
+GROUP by projects.title HAVING SUM(pledges.amount) >= projects.funding_goal
 "
 end
 
